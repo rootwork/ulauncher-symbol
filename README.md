@@ -10,9 +10,7 @@ You can search for characters using their name or description, block names or th
 
 ## Demonstration
 
-(Image needs to be updated for this fork.)
-
-![Demonstration of ulauncher-symbol](ulauncher-unicode-demo.gif)
+![Demonstration of ulauncher-symbol](ulauncher-symbol-demo.gif)
 
 ## Installation
 
