@@ -19,8 +19,9 @@ if sys.version_info[0] >= 3:
 FILE_PATH = os.path.dirname(sys.argv[0])
 
 ICON_TEMPLATE = """
-<svg  width="100" height="100">
-    <text x="50" y="50" dy=".35em" text-anchor="middle" font-family="{font}" font-size="80">{symbol}</text>
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="50" fill="white" />
+  <text x="50" y="50" dy=".35em" text-anchor="middle" font-family="{font}" font-size="60">{symbol}</text>
 </svg>
 """
 
