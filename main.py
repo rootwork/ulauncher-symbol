@@ -79,7 +79,7 @@ class KeywordQueryEventListener(EventListener):
         items = []
         arg = event.get_argument()
         if arg:
-            result_list = SortedList(arg, min_score=40, limit=10)
+            result_list = SortedList(arg, min_score=99, limit=10)
             result_list.extend(extension.character_list)
             for char in result_list:
                 image_path = get_character_icon(char)
