@@ -3,6 +3,9 @@ import sys
 import codecs
 from os.path import join
 
+import subprocess # for pip autoinstallation
+import sys # for pip autoinstallation
+
 from ulauncher.search.SortedList import SortedList
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
@@ -25,6 +28,16 @@ ICON_TEMPLATE = """
 </svg>
 """
 
+# For pip autoinstallation
+def ensure_import(package):
+    try:
+        return __import__(package)
+    except ImportError:
+        subprocess.call([sys.executable, "-m", "pip", "install", "--user", package])
+    return __import__(package)
+
+# For HTML entity conversion
+htmlentities = ensure_import("htmlentities")
 
 class UnicodeChar:
     """ Container class for unicode characters
@@ -71,11 +84,16 @@ class KeywordQueryEventListener(EventListener):
             result_list.extend(extension.character_list)
             for char in result_list:
                 image_path = get_character_icon(char)
+                encoded = htmlentities.encode(char.character)
+                if "&" in encoded:
+                    entity = " - " + encoded
+                else:
+                    entity = ""
                 items.append(
                     ExtensionResultItem(
                         icon=image_path,
                         name=char.name.capitalize() + " - " + char.character,
-                        description=char.block + " - " + char.code,
+                        description=char.block + " - U+" + char.code + entity,
                         on_enter=CopyToClipboardAction(char.character),
                     )
                 )
