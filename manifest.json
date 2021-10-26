@@ -1,6 +1,6 @@
 {
   "name": "Symbol search",
-  "description": "Search symbols in ASCII and Unicode and copy them to the clipboard. Dark mode friendly.",
+  "description": "Search symbols in ASCII and Unicode. Enter to copy the symbol, alt+enter to copy the HTML entity. Dark mode friendly.",
   "developer_name": "Ivan Boothe",
   "icon": "images/insertion-symbol.png",
   "required_api_version": "^2.0.0",
@@ -12,7 +12,7 @@
       "id": "symbol",
       "type": "keyword",
       "name": "Symbol",
-      "description": "Search symbols in ASCII and Unicode and copy them to the clipboard. Dark mode friendly.",
+      "description": "Search symbols in ASCII and Unicode. Enter to copy the symbol, alt+enter to copy the HTML entity. Dark mode friendly.",
       "default_value": "sym"
     }
   ]
