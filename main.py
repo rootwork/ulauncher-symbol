@@ -86,15 +86,17 @@ class KeywordQueryEventListener(EventListener):
                 encoded = htmlentities.encode(char.character)
                 if "&" in encoded:
                     sep = " - "
+                    html = encoded
                 else:
                     sep = ""
+                    html = ""
                 items.append(
                     ExtensionResultItem(
                         icon=image_path,
                         name=char.name.capitalize() + " - " + char.character,
-                        description=char.block + " - U+" + char.code + sep + encoded,
+                        description=char.block + " - U+" + char.code + sep + html,
                         on_enter=CopyToClipboardAction(char.character),
-                        on_alt_enter=CopyToClipboardAction(encoded),
+                        on_alt_enter=CopyToClipboardAction(html),
                     )
                 )
         return RenderResultListAction(items)
