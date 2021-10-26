@@ -1,19 +1,19 @@
 {
-  "name": "Unicode extension",
-  "description": "Search for Unicode characters and copy them to the clipboard",
-  "developer_name": "Vangelis Kostalas",
-  "icon": "images/unicode.png",
+  "name": "Symbol search",
+  "description": "Search symbols in ASCII and Unicode and copy them to the clipboard.",
+  "developer_name": "Ivan Boothe",
+  "icon": "images/insertion-symbol.png",
   "required_api_version": "^2.0.0",
   "options": {
     "query_debounce": 0.5
   },
   "preferences": [
     {
-      "id": "unicode",
+      "id": "symbol",
       "type": "keyword",
-      "name": "Unicode",
-      "description": "Search for Unicode characters and copy them to the clipboard",
-      "default_value": "uni"
+      "name": "Symbol",
+      "description": "Search symbols in ASCII and Unicode and copy them to the clipboard.",
+      "default_value": "sym"
     }
   ]
 }
