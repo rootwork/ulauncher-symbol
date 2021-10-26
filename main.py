@@ -4,7 +4,6 @@ import codecs
 from os.path import join
 
 import subprocess # for pip autoinstallation
-import sys # for pip autoinstallation
 
 from ulauncher.search.SortedList import SortedList
 from ulauncher.api.client.Extension import Extension
