@@ -74,7 +74,7 @@ class KeywordQueryEventListener(EventListener):
                 items.append(
                     ExtensionResultItem(
                         icon=image_path,
-                        name=char.name + " - " + char.character,
+                        name=char.name.capitalize() + " - " + char.character,
                         description=char.block + " - " + char.code,
                         on_enter=CopyToClipboardAction(char.character),
                     )
