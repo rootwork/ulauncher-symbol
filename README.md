@@ -16,6 +16,8 @@ You can search for characters using their name or description, block names or th
 
 Open Ulauncher, go to `Preferences > Extensions > Add extension` and paste the project's URL: `https://github.com/rootwork/ulauncher-symbol.git`
 
+You can also view this extension on the [Ulauncher Extensions website](https://ext.ulauncher.io/-/github-rootwork-ulauncher-symbol).
+
 ## Source
 
 Forked from [zensoup/ulauncher-unicode](https://github.com/zensoup/ulauncher-unicode) to add HTML entities, dark mode theming, fewer false positives in results, and an updated Unicode list.
