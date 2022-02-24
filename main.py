@@ -94,7 +94,7 @@ class KeywordQueryEventListener(EventListener):
                     ExtensionResultItem(
                         icon=image_path,
                         name=char.name.capitalize() + " - " + char.character,
-                        description=char.block + " - U+" + char.code + sep + html,
+                        description=char.block + " - Alt+Enter: " + html + sep + "Code: U+" + char.code,
                         on_enter=CopyToClipboardAction(char.character),
                         on_alt_enter=CopyToClipboardAction(html),
                     )
