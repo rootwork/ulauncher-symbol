@@ -12,7 +12,7 @@
       "id": "symbol",
       "type": "keyword",
       "name": "Symbol",
-      "description": "Search Unicode. Enter to copy symbol, alt+enter to copy HTML entity.",
+      "description": "Search symbols in ASCII and Unicode. Enter to copy the symbol, alt+enter to copy the HTML entity. Dark mode friendly.",
       "default_value": "sym"
     }
   ]
