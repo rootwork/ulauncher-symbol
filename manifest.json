@@ -9,11 +9,32 @@
   },
   "preferences": [
     {
+      "id": "result_limit",
+      "type": "input",
+      "name": "Result limit",
+      "description": "Number of results that should be returned.",
+      "default_value": "10"
+    },
+    {
+      "id": "min_score",
+      "type": "input",
+      "name": "Minimum score",
+      "description": "Only display results with a matching score higher than this. If too high, e.g. higher than 200, no results will be shown.",
+      "default_value": "0"
+    },
+    {
       "id": "symbol",
       "type": "keyword",
       "name": "Symbol",
       "description": "Search symbols in ASCII and Unicode. Enter to copy the symbol, alt+enter to copy the HTML entity. Dark mode friendly.",
       "default_value": "sym"
+    },
+    {
+      "id": "update_interval",
+      "type": "input",
+      "name": "Update interval",
+      "description": "Time interval (in days) after which the cached list of unicode symbols is updated by downloading the newest list. Set to -1 to never update the list.",
+      "default_value": "90"
     }
   ]
 }

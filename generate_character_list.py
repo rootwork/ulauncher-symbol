@@ -2,6 +2,7 @@
 Download the latest unicode tables from  https://www.unicode.org and create a .txt file
 containing all the names, blocks and character codes
 """
+import sys
 import os
 import logging
 from urllib import request
@@ -9,13 +10,18 @@ from urllib import request
 curr_path = os.path.dirname(__file__)
 logging.basicConfig(level=logging.DEBUG)
 
+# Be compatible with both python 2 and 3
+if sys.version_info[0] >= 3:
+    unichr = chr
+
+BASE_URL = "https://www.unicode.org/Public/UCD/latest/ucd"
 
 def get_blocks():
     """ Download the info file for Unicode blocks.
     """
     logging.info("Downloading block data...")
-    req = request.urlopen("https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt")
-    content = req.read().decode()
+    with request.urlopen(f"{BASE_URL}/Blocks.txt") as req:
+        content = req.read().decode()
     logging.info("Done")
     return content
 
@@ -24,10 +30,8 @@ def get_data():
     """ Download the info file for Unicode blocks.
     """
     logging.info("Downloading character data...")
-    req = request.urlopen(
-        "https://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt"
-    )
-    content = req.read().decode()
+    with request.urlopen(f"{BASE_URL}/UnicodeData.txt") as req:
+        content = req.read().decode()
     logging.info("Done")
     return content
 
@@ -61,18 +65,19 @@ def load_blocks():
         [start, end] = indices[half]
         if start > code:
             return locate_block(code, left, right=half)
-        elif end < code:
+        if end < code:
             return locate_block(code, half, right=right)
-        else:
-            return blocks[half]
+        return blocks[half]
 
     return locate_block
 
 
-def main():
-    """ Read the character and block data and unite them to a text file containing the following fields:
-    `<character name>   <character comment> <code>  <block name>`
-    seperated by tab characters.
+def main(out: str = "unicode_list.txt"):
+    """Create the file with Unicode characters.
+
+    Read the character and block data and unite them to a text file
+    containing the following fields, separated by tab characters:
+    `<character name> <character comment> <code> <block name>`
     """
     get_block = load_blocks()
     characters = clean(get_data())
@@ -90,7 +95,7 @@ def main():
         try:
             num = int(code, 16)
         except ValueError:
-            logging.warn("Could not convert " + code)
+            logging.warning("Could not convert %s", code)
             continue
 
         # Find the character's block
@@ -98,12 +103,23 @@ def main():
         if blk is not None:
             output.append("\t".join((name, comment, code, blk)))
         else:
-            logging.warn("Code %s not found in any block, char: %s", num, unichr(num))
+            logging.warning("Code %s not found in any block, char: %s", num, unichr(num))
             output.append(name + "\t" + comment + "\t" + code + "\t")
 
-    with open("unicode_list.txt", "w") as target:
+    with open(out, "w", encoding="utf-8") as target:
         target.write("\n".join(output))
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "path",
+        type=str,
+        help="the output path where to save the Unicode list.",
+        default="unicode_list.txt",
+    )
+
+    args = parser.parse_args()
+
+    main(args.path)
